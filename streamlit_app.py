@@ -3,16 +3,15 @@ import plotly.graph_objects as go
 import numpy as np
 
 # Streamlitのページ設定
-st.set_page_config(page_title="Quadratic 3D Function Visualizer")
+st.set_page_config(page_title="Complex 3D Function Visualizer")
 
 # ヘッダー
-st.title("Quadratic 3D Function Visualizer")
+st.title("Complex 3D Function Visualizer")
 st.caption("Created by ChatGPT")
 
 # ユーザーからの入力を受け取る
-a = st.slider("Choose the coefficient 'a'", min_value=-10, max_value=10, value=1)
-b = st.slider("Choose the coefficient 'b'", min_value=-10, max_value=10, value=0)
-c = st.slider("Choose the coefficient 'c'", min_value=-10, max_value=10, value=0)
+n = st.slider("Choose the exponent (n)", min_value=1, max_value=10, value=2)
+a = st.slider("Choose the coefficient 'a'", min_value=1, max_value=10, value=1)
 
 # 実数または純虚数のxの値を生成
 x_type = st.radio("Select x type", ["Real", "Imaginary"])
@@ -27,8 +26,8 @@ else:
     x_values = np.linspace(0, 0, 100)  # 実数の場合はxはすべて0
     y_values = np.linspace(y_min, y_max, 100)
 
-# y = ax^2 + bx + c の計算
-z_values = a * x_values**2 + b * x_values + c + 1j * y_values
+# y = ax^n の計算
+z_values = a * (x_values + 1j * y_values) ** n
 
 # 3Dプロットの作成
 fig = go.Figure()
@@ -41,7 +40,7 @@ if x_type == "Real":
         z=z_values.real,
         mode='lines',
         line=dict(color='blue', width=3),
-        name=f'y = {a}x^2 + {b}x + {c} (Real)'
+        name=f'y = {a}x^{n} (Real)'
     ))
 else:
     fig.add_trace(go.Scatter3d(
@@ -50,7 +49,7 @@ else:
         z=z_values.real,
         mode='lines',
         line=dict(color='red', width=3),
-        name=f'y = {a}x^2 + {b}x + {c} (Imaginary)'
+        name=f'y = {a}x^{n} (Imaginary)'
     ))
 
 # プロットの設定
@@ -60,7 +59,7 @@ fig.update_layout(
         yaxis=dict(title='Y'),
         zaxis=dict(title='Z'),
     ),
-    title=f'3D Plot of y = {a}x^2 + {b}x + {c}'
+    title=f'3D Plot of y = {a}x^{n}'
 )
 
 # プロットの表示
