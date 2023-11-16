@@ -35,8 +35,8 @@ fig = go.Figure()
 if x_type == "Real":
     fig.add_trace(go.Scatter3d(
         x=x_values,
-        y=z_values.real,  # y_valuesとz_valuesを入れ替える
-        z=y_values,  # y_valuesとz_valuesを入れ替える
+        y=y_values,
+        z=z_values.real,
         mode='lines',
         line=dict(color='blue', width=3),
         name=f'y = x^{n} (Real)'
@@ -44,8 +44,8 @@ if x_type == "Real":
 else:
     fig.add_trace(go.Scatter3d(
         x=x_values,
-        y=z_values.real,  # y_valuesとz_valuesを入れ替える
-        z=y_values,  # y_valuesとz_valuesを入れ替える
+        y=y_values,
+        z=z_values.real,
         mode='lines',
         line=dict(color='red', width=3),
         name=f'y = x^{n} (Imaginary)'
@@ -55,8 +55,8 @@ else:
 fig.update_layout(
     scene=dict(
         xaxis=dict(title='X'),
-        yaxis=dict(title='Z'),  # Y軸とZ軸のラベルを入れ替える
-        zaxis=dict(title='Y'),  # Y軸とZ軸のラベルを入れ替える
+        yaxis=dict(title='Y'),
+        zaxis=dict(title='Z'),
     ),
     title=f'3D Plot of y = x^{n}'
 )
