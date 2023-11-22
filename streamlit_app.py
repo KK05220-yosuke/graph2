@@ -56,8 +56,8 @@ else:
 fig.update_layout(
     scene=dict(
         xaxis=dict(title='X'),
-        yaxis=dict(title='Y'),
-        zaxis=dict(title='Z'),
+        yaxis=dict(title='Z'),  # Swap Y and Z axes titles
+        zaxis=dict(title='Y'),  # Swap Y and Z axes titles
     ),
     title=f'3D Plot of y = {a}x^{n}'
 )
